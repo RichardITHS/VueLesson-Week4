@@ -84,7 +84,8 @@ const message = Vue.createApp({
   app4.component('counter-button', {
     data(){
       return{
-        counter: this.start
+        counter: this.initialValue
+        //not like this counter: this.initial-value
       }
     },
     methods:{
@@ -92,10 +93,54 @@ const message = Vue.createApp({
         this.counter = this.counter + 1
       }
     },
-    props:['start'],
+    props:{
+      initialValue: Number
+      //propsname: type
+    },
     template: `
     <input :value="counter" @click="onClick" type="button">
     `
 
   })
   app4.mount('#app4')
+
+  /* Part 6 not props in component */
+  const app6 = Vue.createApp({})
+  app6.component('name-example', {
+    data(){
+      return{
+        detailAreVisible: false,
+        person:{
+          id: 'richard',
+          name: 'Richard Carlsson',
+          phone: '0123456789',
+          email: 'richard.carlsson@iths.se'
+        }
+      }
+    }, 
+    methods: {
+        toggleDetails(){
+          this.detailAreVisible = !this.detailAreVisible;
+        }
+    },
+    template:`
+       <div class="center">
+       <li>
+    <h2>{{ person.name }}</h2>
+    <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
+    <ul v-if="detailsAreVisible">
+      <li>
+        <strong>Phone:</strong>
+        {{ person.phone }}
+      </li>
+      <li>
+        <strong>Email:</strong>
+        {{ person.email }}
+      </li>
+    </ul>
+  </li>
+    </div>
+      `
+  })
+  app6.mount('#app6')
+
