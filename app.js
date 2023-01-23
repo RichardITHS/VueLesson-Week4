@@ -180,3 +180,29 @@ const message = Vue.createApp({
   })
   app7.mount('#app7')
 
+  /* Part 8 custom events */
+  /* You need to add a method in the app to make it work */
+const app8 = Vue.createApp({
+  methods:{
+    /* Function onValueIncremented that takes in the value counter that we want to send back to the parent */
+    onValueIncremented(counter){
+      console.log(`Värdet har ökat till ${counter}!`)
+    }
+  }
+})
+app8.component('counter-button', {
+  data(){
+    return {
+      counter:0
+    }
+  },
+  methods:{
+    onClick(){
+      this.counter = this.counter + 1
+      /* We need to use "this.$emit" and the naming of the custom event that vi have in our html v-on component */
+      this.$emit('value-incremented', this.counter)
+    }
+  },
+  template:' <input :value="counter" @click="onClick" type="button">'
+})
+app8.mount('#app8')
