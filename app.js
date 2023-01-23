@@ -128,7 +128,7 @@ const message = Vue.createApp({
        <li>
     <h2>{{ person.name }}</h2>
     <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
-    <ul v-if="detailsAreVisible">
+    <ul v-if="detailAreVisible">
       <li>
         <strong>Phone:</strong>
         {{ person.phone }}
@@ -143,4 +143,40 @@ const message = Vue.createApp({
       `
   })
   app6.mount('#app6')
+
+  /* Part 7 props, working with props in the component */
+  const app7 = Vue.createApp({});
+  app7.component('name-example', {
+    props:{name:String, phoneNumber:Number, email:String},
+    data(){
+      return{
+        detailAreVisible: false,
+       
+      }
+    }, 
+    methods: {
+        toggleDetails(){
+          this.detailAreVisible = !this.detailAreVisible;
+        }
+    },
+    template:`
+       <div class="center">
+       <li>
+    <h2>{{ name }}</h2>
+    <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
+    <ul v-if="detailAreVisible">
+      <li>
+        <strong>Phone:</strong>
+        {{ phoneNumber }}
+      </li>
+      <li>
+        <strong>Email:</strong>
+        {{ email }}
+      </li>
+    </ul>
+  </li>
+    </div>
+      `
+  })
+  app7.mount('#app7')
 
