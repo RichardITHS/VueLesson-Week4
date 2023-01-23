@@ -17,7 +17,32 @@
       <h1>{{message}}</h1>
     </section>
 
-   
+    <!-- Part 1 props, take in value from a props called "start" -->
+    <!-- Observe that a props without v-bind is a string -->
+    <div id="app">
+      <counter-button start="2"></counter-button>
+    </div>
+
+    <!-- Part 2 props, take in value from a props called "start" -->
+    <!-- Observe that a props with v-bind is the correct value (use in case you have a number or a boolean) -->
+    <div id="app2">
+      <counter-button :start="1"></counter-button>
+    </div>
+
+    <!-- Part 3 props, takes in value individually from each prop -->
+    <div id="app3">
+      <counter-button :start="1"></counter-button>
+      <counter-button :start="2"></counter-button>
+      <counter-button :start="3"></counter-button>
+    </div>
+
+    <!-- Part 4 props, focus on the naming (kebab-case and camelCase) -->
+    <div id="app4">
+      <counter-button id="counter-button" :initial-value="1"></counter-button>
+      <counter-button id="counter-button" :initial-value="2"></counter-button>
+      <counter-button id="counter-button" :initial-value="3"></counter-button>
+    </div>
+ 
     <script src="app.js"></script>
   </body>
 </html>
