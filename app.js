@@ -1,4 +1,4 @@
-/* Welcome to week 4 */
+/* Welcome to week 4 we love to code*/
 
 const message = Vue.createApp({
     data(){
